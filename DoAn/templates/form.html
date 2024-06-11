@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán Bệnh Tim</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card mx-auto p-4">
+            <h1 class="text-center">Nhóm 8 - DỰ ĐOÁN BỆNH TIM</h1>
+            <form action="/predict" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="age">Tuổi:</label>
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Ví dụ: 45" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="sex">Giới tính:</label>
+                        <select class="form-control" id="sex" name="sex" required>
+                            <option value="1">Nam</option>
+                            <option value="0">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="resting_bp">Huyết áp khi nghỉ (mmHg):</label>
+                        <input type="number" class="form-control" id="resting_bp" name="resting_bp" placeholder="Ví dụ: 120" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cholesterol">Cholesterol (mg/dL):</label>
+                        <input type="number" class="form-control" id="cholesterol" name="cholesterol" placeholder="Ví dụ: 200" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="fasting_bs">Đường huyết khi đói > 120 mg/dL:</label>
+                        <select class="form-control" id="fasting_bs" name="fasting_bs" required>
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="max_hr">Nhịp tim tối đa (bpm):</label>
+                        <input type="number" class="form-control" id="max_hr" name="max_hr" placeholder="Ví dụ: 150" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="oldpeak">Oldpeak (chỉ số chênh lệch ST khi gắng sức):</label>
+                        <input type="number" class="form-control" id="oldpeak" name="oldpeak" step="0.01" placeholder="Ví dụ: 1.2" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="chest_pain">Loại đau ngực:</label>
+                        <select class="form-control" id="chest_pain" name="chest_pain" required>
+                            <option value="0">Không đau</option>
+                            <option value="1">Đau thắt ngực không ổn định</option>
+                            <option value="2">Đau thắt ngực ổn định</option>
+                            <option value="3">Đau không do thắt ngực</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="resting_ecg">Điện tâm đồ khi nghỉ ngơi:</label>
+                        <select class="form-control" id="resting_ecg" name="resting_ecg" required>
+                            <option value="0">Bình thường</option>
+                            <option value="1">Có ST-T bất thường</option>
+                            <option value="2">Phì đại tâm thất trái</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exercise_angina">Đau thắt ngực khi gắng sức:</label>
+                        <select class="form-control" id="exercise_angina" name="exercise_angina" required>
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="st_slope">Độ dốc ST:</label>
+                        <select class="form-control" id="st_slope" name="st_slope" required>
+                            <option value="0">Dốc xuống</option>
+                            <option value="1">Bằng phẳng</option>
+                            <option value="2">Dốc lên</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Dự đoán</button>
+            </form>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary btn-block" onclick="fillExampleHighRisk()">Điền ví dụ (Nguy cơ cao)</button>
+                <button type="button" class="btn btn-secondary btn-block" onclick="fillExampleLowRisk()">Điền ví dụ (Nguy cơ thấp)</button>
+                <button type="button" class="btn btn-secondary btn-block" onclick="fillRandomExample()">Điền ví dụ ngẫu nhiên</button>
+            </div>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>
